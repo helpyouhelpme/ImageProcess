@@ -1,0 +1,325 @@
+// Vega Application Definition File
+
+system {
+	notify	notice;
+	cscheme	1;
+	mpmode	5;
+	appcpu	-1;
+	apppri	32;
+	isectproc	off;
+	isectcpu	-1;
+	isectpri	36;
+	syscpu	-1;
+	framerate	30;
+	phase	free;
+	fperror	off;
+	dbproc	off;
+	dbcpu	-1;
+	dbpri	32;
+	lpproc	off;
+	preloadtex	on;
+	preloadptex	on;
+	sorttex	off;
+	texpagesize	-1;
+	exitkey	0;
+	vegapri	35;
+	dvmode	0;
+	remotestart	off;
+	multicast	on;
+	inputenabled	on;
+	numtrials	10;
+	drop_frames	0;
+	vegaprocpri	49;
+	tex_sub_ctrl_state	on;
+	tex_sub_underload_gain	1;
+	tex_sub_overload_gain	1;
+	tex_sub_stats_level	debug;
+	tex_sub_stats_period	-1;
+	tex_sub_stats_flag	0x0;
+	buffer_sync	on;
+}
+
+
+path {
+	pathname	"$(PSI_SAMPLE_DATA)\Vega";
+}
+
+
+channel visual {
+	viewport	0	1	0	1;
+	skew	0	0	0	0	0	0;
+	nearfar	2081	3328;
+	clear	1	0	0	0;
+	cullcpu	-1;
+	cullpri	32;
+	lpcpu	-1;
+	lppri	32;
+	cullmode	0xF;
+	sorttype	0x8;
+	mainsort	0x0;
+	subsort	0x0;
+	dvrstate	off;
+	dvrmode	2;
+	dvrfilter	0.8	0.95	1.5	10;
+	dvrsize	1280	1024;
+	dvrvchan	0;
+	stereobuf	0;
+	statlevel	0;
+	obs_stereo	0;
+	average	0;
+	text_color	1	1	1;
+	text_text_width	20;
+	text_text_height	30;
+	text_label_width	20;
+	text_data_width	10;
+	graph_color	1	1	1;
+	graph_text_width	20;
+	graph_text_height	30;
+	graph_height	125;
+	graph_num_samples	100;
+	threshold_low_color	0	0	1;
+	threshold_medium_color	1	1	1;
+	threshold_hi_color	1	0	0;
+	gfx	Default;
+	ortho	-474.5	474.5	-230	230;
+}
+
+
+gfx Default {
+	texture	on;
+	lighting	on;
+	fog	on;
+	transparency	on;
+	zbuffer	on;
+	frontface	on;
+	backface	off;
+	wireframe	off;
+	fade	off;
+	faderange	100;
+	lodscale	1;
+}
+
+
+object town {
+	file	town.flt;
+	convt	1;
+	cs	0;
+	optim	0x3;
+	isclass	0x0;
+	divisions	10;
+	upvol	on;
+	parts	on;
+	autorange	-1;
+	pos	0	0	0	0	0	0;
+	represent	0xFFFFFFFF;
+	immediate	1;
+	useprojection	0;
+	temp	0;
+	scale	1;
+	tflod_state	off;
+	tflod_depth	1;
+	complete	on;
+	constrain	on;
+	rw_enable	on;
+	rw_defmaterial	Scrub.mtl;
+	rw_options	off;
+	rw_rcs	"";
+	rw_pixelcap	10000;
+	rw_pixelblock	100;
+}
+
+
+observer visual {
+	gfx	Default;
+	env	Default;
+	motion	Default;
+	state	1;
+	tether	1	0;
+	tfollow	100	0.1;
+	toffset	0	0	0;
+	tspin	100	0.5	20;
+	stressstate	off;
+	stressparam	0.5	0.7	0.1;
+	stereosep	0.05;
+	stereorng	30;
+	cloak	off;
+	share	0x7;
+	lookat	0;
+	position	0	2800	750;
+	euler	0	0	0;
+	scene	Default;
+	tfixed	0	-20	0	0	0	0;
+	fovaspectlodmng	on;
+}
+
+
+scene Default {
+	optim	0x0;
+	object	town;
+}
+
+
+window Blank {
+	screen	0;
+	winsize	0	768	0	768;
+	border	off;
+	cursor	on;
+	cullthreads	-1;
+	lpthreads	-1;
+	label	"";
+	intro	"";
+	input	on;
+	async	off;
+	mouseio	0;
+	cbits	5;
+	alphabits	0;
+	accumcbits	0;
+	accumalphabits	0;
+	zbits	24;
+	samples	0;
+	aa	on;
+	stencil	0;
+	stereo	off;
+	bufmode	0;
+	iocpu	-1;
+	iopri	52;
+	drawcpu	-1;
+	drawpri	32;
+	pbuffer	off;
+	introclr	0	1	1;
+	hostname	"";
+	path	"";
+}
+
+
+motion Default {
+	inputobject	Default;
+	model	101;
+	state	on;
+	position	0	2500	2000	0	0	0;
+	radius	10;
+	scale	1	1;
+	gas	1;
+	brake	1;
+	wheel	1;
+	velocity	400;
+	region	-500	-500	500	500;
+	fixedtime	on;
+}
+
+
+env Default {
+	lightsrc	Default;
+	state	on;
+	skycolor	0.3	0.5	1;
+	fogstate	disable;
+	rampval	0	0;
+	viscolor	0.3	0.5	1;
+	visrng	1	20000;
+	vistype	1;
+	visfunc	2;
+	tod	1;
+	localviewer	off;
+	globalambient	0	0	0;
+	tod_ambient	on;
+	lmdltwosides	off;
+	envfxname	ephemeris;
+}
+
+
+envfx ephemeris {
+	state	on;
+	type	4;
+	color	1	1	1;
+	trans_override	0;
+	date	06221996;
+	utcoffset	-6;
+	starttime	12;
+	timemult	1;
+	recalctime	0;
+	posspec	1;
+	position	32.79	-96.79;
+	twilightdip	-18;
+	moonbright	0.25;
+}
+
+
+light Default {
+	type	3;
+	state	on;
+	twoside	0;
+	position	0.707	0.707	0;
+	ambient	0.3	0.3	0.3;
+	tod_ambient	on;
+	diffuse	1	1	1;
+	attn	1	0	0;
+}
+
+
+dbm {
+	dborigin	0	0	0;
+	dbshape	0;
+	rw_dbase	"/usr/local/PSI/data/sp/mat/radar.mat";
+}
+
+
+input Default {
+	devicetype	1;
+	devicefile	"/dev/ttyd2";
+	XYZscale	1	1	1;
+	HPRscale	1	1	1;
+	calfile	"";
+	state	on;
+	async	0;
+	calibtype	1;
+}
+
+
+rwsensor sar {
+	polarization	0;
+	frequency	3;
+	power_min	-30;
+	power_max	30;
+	update_rate	-1;
+	cpu	-1;
+	radar_type	3;
+	viewport	0	1	0	1;
+	rcs_stats	off;
+	pbuffer_switch	off;
+	sar_resolution	2;
+	sar_motion_comp	5;
+	sar_freq_agility	1;
+	sar_nominal_speed	500;
+	sar_speckle	0.348;
+	sar_fft_size	64;
+	sar_prf	2.5;
+	sar_range	2500;
+	sar_squint	90;
+	sar_spotlight_x	2400;
+	sar_spotlight_y	2400;
+	sar_map_size	1500;
+	sar_mode	0;
+	sar_resolution_option	0;
+	window	Blank;
+	observer	visual;
+	enable	on;
+	output	1;
+	disp_raster_base_color	0.501961	0.501961	0.501961;
+	alt_offset	0;
+	priority	50;
+	num_mat	2;
+}
+
+
+application Default {
+	fname	"./rw";
+	appargs	"$ADF";
+}
+
+
+adfstate {
+	module	Vega	3.5;
+	module	Base	3.2;
+	module	RadarWorks	3.6;
+}
+
